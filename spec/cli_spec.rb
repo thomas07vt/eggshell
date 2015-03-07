@@ -27,7 +27,12 @@ describe 'CLI' do
 
 		it 'defaults the command to "help" when nothing is passed' do
 			expect(Eggshell::Command).to receive(:run).with("help", [])
-			Eggshell::CLI.start()
+			Eggshell::CLI.start
+		end
+
+		it 'invokes Eggshell::Command.load!' do
+			expect(Eggshell::Command).to receive(:load!)
+			Eggshell::CLI.start("test", "-a", "first")
 		end
 
 	end

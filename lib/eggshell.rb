@@ -1,5 +1,7 @@
-# Require self files
-eggshell_path = File.dirname(__FILE__)
+require 'eggshell/cli'
+require 'eggshell/command'
 
-# Require files
-Dir["#{eggshell_path}/**/*.rb"].each { |f| require_relative "#{f}"}
+
+module Eggshell
+	
+end

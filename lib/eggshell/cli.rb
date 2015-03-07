@@ -1,3 +1,4 @@
+
 module Eggshell
 	module CLI
 		class << self
@@ -9,7 +10,7 @@ module Eggshell
 		    $stdout.sync = true if $stdout.isatty
 
 		    command = args.shift.strip rescue "help"
-		    # Eggshell::Command.load
+		    Eggshell::Command.load!
 		    Eggshell::Command.run(command, args)
 
 		  # rescue Errno::EPIPE => e
