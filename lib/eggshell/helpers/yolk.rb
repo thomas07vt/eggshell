@@ -6,6 +6,8 @@ class Yolk
 		def yolk(options)
 			command = options[:command]
 			define_eggshell_command(command)
+			Eggshell::Command.register_command(command: command, object: self)
+
 		end
 
 		def eggshell_command
@@ -14,7 +16,6 @@ class Yolk
 
 	private
 		def define_eggshell_command(command)
-			puts "THERE:: #{command}"
 			@@command = command
 		end
 	end # End self methods
