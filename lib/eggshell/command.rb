@@ -1,6 +1,5 @@
 require "optparse"
 
-
 module Eggshell
 	module Command
 		class << self
@@ -16,13 +15,13 @@ module Eggshell
 				@@commands ||= {}
 			end
 
+			def register_command(command_options)
+				command_name = 	command_options[:command]
+				commands[command_name] = command_options[:object]
+			end
+
 		end # End class methods
 
 	end
 end
 
-[3] pry(main)> class Class
-[3] pry(main)*   def first
-[3] pry(main)*     puts 'HIT'
-[3] pry(main)*   end  
-[3] pry(main)* end  
