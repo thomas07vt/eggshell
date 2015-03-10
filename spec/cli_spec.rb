@@ -31,6 +31,7 @@ describe 'CLI' do
 		end
 
 		it 'invokes Eggshell::Command.load!' do
+			Eggshell::Command.stub(:run).and_return("test")
 			expect(Eggshell::Command).to receive(:load!)
 			Eggshell::CLI.start("test", "-a", "first")
 		end
