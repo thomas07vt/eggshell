@@ -1,10 +1,5 @@
 require_relative 'spec_helper'
 
-# def run(args = nil)
-# 	system "#{File.dirname(__FILE__)}/../bin/egg #{args}"
-# end
-
-
 describe 'CLI' do
 	before do
 	end

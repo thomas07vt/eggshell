@@ -8,12 +8,13 @@ module Eggshell
 				Dir["#{File.dirname(__FILE__)}/command/**/*.rb"].each { |f| require f }
 			end
 
-			def run(command, args)
+			def run(command, argv)
 				command_object = lookup_command(command)
-				puts "COMMAND: #{commands} #{command}"
-				puts " STUFF: #{commands[command]}"
-				puts "  args: #{args}"
-				command_object.new(args)
+				
+				# Default is to create a new object with the
+				# passed argv.
+				# I need to make this more configurable
+				command_object.new(argv)
 			end
 
 			def commands
@@ -28,8 +29,7 @@ module Eggshell
 		private
 
 			def lookup_command(command)
-				puts "HIT: #{command}"
-				return commands[command]
+				commands[command]
 			end
 
 		end # End class methods
