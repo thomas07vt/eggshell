@@ -36,23 +36,16 @@ describe "Command" do
 	context '.run' do
 
 		it 'passes arguments to command' do
-			expect(SSH).to receive(:new).with("rspec")
+			expect(Eggshell::SSH).to receive(:new).with("rspec")
 			Eggshell::Command.run("ssh", "rspec")
 		end
-
-		# This test doesn't work for some reason... 
-		# I don't know why....
-		# it 'invokes lookup_command' do
-		# 	expect(Eggshell::Command).to receive(:lookup_command)
-		# 	Eggshell::Command.run("ssh", "rspec")
-		# end
 
 	end
 
 	context '.lookup_command' do
 
 		it 'returns the command Object' do 
-			expect(Eggshell::Command.send(:lookup_command, "ssh")).to eq(SSH)
+			expect(Eggshell::Command.send(:lookup_command, "ssh")).to eq(Eggshell::SSH)
 		end
 		
 	end

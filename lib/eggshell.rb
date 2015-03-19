@@ -4,5 +4,4 @@ require 'eggshell/helpers/yolk'
 
 
 module Eggshell
-
 end
