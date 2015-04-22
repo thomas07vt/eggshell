@@ -6,7 +6,7 @@
 ENV['RACK_ENV'] = 'test'
 puts " Starting Tests with RACK_ENV=#{ENV['RACK_ENV']}"
 
-Dir["#{File.dirname(__FILE__)}/../lib/eggshell.rb"].each { |f| require_relative "#{f}" }
+require_relative "#{File.dirname(__FILE__)}/../lib/eggshell.rb"
 
 RSpec.configure do |config|
   # include Rack::Test::Methods

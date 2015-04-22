@@ -1,5 +1,4 @@
 require "optparse"
-require "pry"
 
 module Eggshell
 
