@@ -1,22 +1,21 @@
 
 
 class Yolk
-	class << self
+  class << self
 
-		def yolk(options)
-			command = options[:command]
-			define_eggshell_command(command)
-			Eggshell::Command.register_command(command: command, object: self)
+    def yolk(options)
+      command = options[:command]
+      define_eggshell_command(command)
+      Eggshell::Command.register_command(command: command, object: self)
+    end
 
-		end
+    def eggshell_command
+      @@command
+    end
 
-		def eggshell_command
-			@@command
-		end
-
-	private
-		def define_eggshell_command(command)
-			@@command = command
-		end
-	end # End self methods
+  private
+    def define_eggshell_command(command)
+      @@command = command
+    end
+  end # End class methods
 end

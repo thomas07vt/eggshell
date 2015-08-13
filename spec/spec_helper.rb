@@ -1,7 +1,4 @@
 # spec/spec_helper.rb
-# unless ["production", "stage", "development" ].include?(ENV['RACK_ENV']) 
-#   ENV['RACK_ENV'] = 'test'
-# end
 
 ENV['RACK_ENV'] = 'test'
 puts " Starting Tests with RACK_ENV=#{ENV['RACK_ENV']}"
@@ -18,6 +15,6 @@ RSpec.configure do |config|
   config.tty = true
 
   # Use the specified formatter
-  config.formatter = :documentation 
+  config.formatter = :documentation
 
 end

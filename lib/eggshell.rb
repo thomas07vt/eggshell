@@ -8,4 +8,11 @@ Dir["#{File.dirname(__FILE__)}/eggshell/command/*.rb"].each { |f| require_relati
 
 
 module Eggshell
+
+  class << self
+    def home
+      ENV["HOME"]
+    end
+  end
+
 end
