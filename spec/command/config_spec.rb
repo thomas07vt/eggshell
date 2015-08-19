@@ -2,6 +2,19 @@ require_relative '../spec_helper'
 
 describe "Config" do
 
+  context '.load!' do
+    before do
+      conf = YAML.load_file("#{Eggshell.home}/config.yml")
+      expect(conf['global']).to eq(true)
+    end
+
+    it 'sets the default global to true by default' do
+      Eggshell::Config.load!
+      expect(Eggshell::Config[:global]).to eq(true)
+    end
+
+  end
+
   context '.initialize' do
 
     it 'parses options' do
@@ -26,23 +39,9 @@ describe "Config" do
       end
 
       describe 'without -g options' do
-
       end
 
     end
-
-    describe 'with an arguments' do
-
-      describe 'with the -g options' do
-
-      end
-
-      describe 'without -g options' do
-
-      end
-
-    end
-
 
   end
 

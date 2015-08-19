@@ -40,7 +40,7 @@ describe "INIT" do
 
       it 'creates an egg folder in the users home directory' do
         Eggshell::INIT.new(["--global"])
-        expect(Dir["#{Eggshell.home}/.egg"]).to_not eq([])
+        expect(Dir["#{Eggshell.home}"]).to_not eq([])
         rm_global_dir
       end
 

@@ -40,7 +40,6 @@ describe "Notes" do
       #end
 
       it 'prints all *.note files in the golbal folder' do
-        Eggshell.stub(:home).and_return("#{ENV["HOME"]}/.eggspec")
         expect(Eggshell::Printer).to receive(:log).with("rspec.note")
         Eggshell::Notes.new(["-g", "list"])
       end
@@ -50,7 +49,6 @@ describe "Notes" do
     context '#create' do
 
       before do
-        Eggshell.stub(:home).and_return("#{ENV["HOME"]}/.eggspec")
         expect(`ls #{ENV['HOME']}/.eggspec/.egg/notes/`).to eq("rspec.note\n")
       end
 
@@ -69,7 +67,6 @@ describe "Notes" do
     context '#delete' do
 
       before do
-        Eggshell.stub(:home).and_return("#{ENV["HOME"]}/.eggspec")
         Eggshell::Notes.new(["-g", "create", "del_me"])
         expect(`ls #{ENV['HOME']}/.eggspec/.egg/notes/`).to eq("del_me.note\nrspec.note\n")
       end
@@ -82,6 +79,14 @@ describe "Notes" do
         Eggshell::Notes.new(["-g", "delete", "del_me"])
         expect(`ls #{ENV['HOME']}/.eggspec/.egg/notes/`).to eq("rspec.note\n")
       end
+
+    end
+
+    context '#open' do
+      before do
+      end
+
+
 
     end
 

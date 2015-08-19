@@ -39,7 +39,7 @@ module Eggshell
     end
 
     def list(opts, cmds=[])
-      notes = Dir["#{@dir}/.egg/notes/*.note"].map { |f| File.basename(f) }
+      notes = Dir["#{@dir}/notes/*.note"].map { |f| File.basename(f) }
       Printer.log(notes.join("\n"))
     end
 
@@ -48,7 +48,7 @@ module Eggshell
         Printer.log("You please provide a name for you note\n e.g:\n $ egg notes create note_name")
       else
         name = cmds[0]
-        File.open("#{@dir}/.egg/notes/#{name.to_s}.note", 'w').close
+        File.open("#{@dir}/notes/#{name.to_s}.note", 'w').close
       end
     end
 
@@ -57,8 +57,8 @@ module Eggshell
         Printer.log("You please provide a name for you note\n e.g:\n $ egg notes delete note_name")
       else
         name = cmds[0]
-        if File.exists?("#{@dir}/.egg/notes/#{name.to_s}.note")
-          File.delete("#{@dir}/.egg/notes/#{name.to_s}.note")
+        if File.exists?("#{@dir}/notes/#{name.to_s}.note")
+          File.delete("#{@dir}/notes/#{name.to_s}.note")
           Printer.log("'#{name.to_s}' deleted.")
         else
           Printer.log("Sorry, I couldn't find '#{name.to_s}.note' in #{Eggshell.home}/notes/")
@@ -69,7 +69,7 @@ module Eggshell
     private
 
     def set_egg_dir
-      @dir = "."
+      @dir = "./.egg"
       @dir = Eggshell.home if @options[:global]
     end
 

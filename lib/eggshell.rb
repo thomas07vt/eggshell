@@ -11,7 +11,7 @@ module Eggshell
 
   class << self
     def home
-      ENV["HOME"]
+      "#{ENV["HOME"]}/.egg"
     end
   end
 

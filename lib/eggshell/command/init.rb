@@ -34,7 +34,7 @@ module Eggshell
 
 
     def create_global_dir
-      egg_dir = "#{Eggshell.home}/.egg"
+      egg_dir = "#{Eggshell.home}"
       puts "Creating #{egg_dir} directory..."
       system("mkdir #{egg_dir}")
     end

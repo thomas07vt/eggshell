@@ -1,39 +1,39 @@
 require "optparse"
 
 module Eggshell
-	module Command
-		class << self
+  module Command
+    class << self
 
-			def load!
-				Dir["#{File.dirname(__FILE__)}/command/**/*.rb"].each { |f| require f }
-			end
+      def load_all!
+        Dir["#{File.dirname(__FILE__)}/command/**/*.rb"].each { |f| require f }
+      end
 
-			def run(command, argv)
-				command_object = lookup_command(command)
-				
-				# Default is to create a new object with the
-				# passed argv.
-				# I need to make this more configurable
-				command_object.new(argv)
-			end
+      def run(command, argv)
+        command_object = lookup_command(command)
 
-			def commands
-				@@commands ||= {}
-			end
+        # Default is to create a new object with the
+        # passed argv.
+        # I need to make this more configurable
+        command_object.new(argv)
+      end
 
-			def register_command(command_options)
-				command_name = 	command_options[:command]
-				commands[command_name] = command_options[:object]
-			end
+      def commands
+        @@commands ||= {}
+      end
 
-		private
+      def register_command(command_options)
+        command_name =   command_options[:command]
+        commands[command_name] = command_options[:object]
+      end
 
-			def lookup_command(command)
-				commands[command]
-			end
+    private
 
-		end # End class methods
+      def lookup_command(command)
+        commands[command]
+      end
 
-	end
+    end # End class methods
+
+  end
 end
 

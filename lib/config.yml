@@ -1,0 +1,3 @@
+# Default is to use the global directory.
+global: true
+
