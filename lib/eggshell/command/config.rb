@@ -18,7 +18,8 @@ module Eggshell
       handle_command
     end
 
-    def show
+    def show(opts, argv)
+      system("vim #{Eggshell.home}/config.yml")
     end
 
     private
@@ -26,9 +27,9 @@ module Eggshell
     def handle_command
       command = @commands.shift
       if AVAILABLE_COMMANDS.include?(command)
-        self.send(command.to_sym, @options, argv)
+        self.send(command.to_sym, @options, @commands)
       else
-        print_no_command_error(command)
+        Printer.print_no_command_error(command, AVAILABLE_COMMANDS)
       end
     end
 
@@ -42,19 +43,19 @@ module Eggshell
       parser.parse!(argv)
     end
 
-    def print_no_command_error(command)
-      Printer.log("Error: #{command} not an available command.\n" +
-        "Available commands: #{AVAILABLE_COMMANDS.join(", ")}")
-    end
 
     class << self
       extend Forwardable
       def_delegator :config, :[]
 
       def load!
-        @@config = YAML.load_file("#{Eggshell.home}/config.yml") || {}
-        symbolize_keys(@@config)
-        @@config
+        if installed?
+          @@config = YAML.load_file("#{Eggshell.home}/config.yml") || {}
+          symbolize_keys(@@config)
+          @@config
+        else
+          {}
+        end
       end
 
       def config
@@ -67,6 +68,12 @@ module Eggshell
         end
 
         hash
+      end
+
+    private
+
+      def installed?
+        File.exist?("#{Eggshell.home}/config.yml")
       end
 
     end # End Class methods

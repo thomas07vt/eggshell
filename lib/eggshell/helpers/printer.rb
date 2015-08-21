@@ -9,6 +9,10 @@ module Eggshell
         puts msg.to_s
       end
 
+      def print_no_command_error(command, available)
+        Printer.log("Error: #{command} not an available command.\n" +
+          "Available commands: #{available.join(", ")}")
+      end
 
     end # End class methods
 

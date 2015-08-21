@@ -22,27 +22,10 @@ describe "Config" do
       Eggshell::Config.new
     end
 
+  end
 
-    describe 'with no arguments' do
-
-      describe 'with the -g options' do
-
-        context '.parse_options' do
-
-          it 'sets the @options[:global]' do
-            #egg = Eggshell::INIT.new(["-g"])
-            #expect(egg.instance_variable_get(:@options)[:global]).to eq(true)
-          end
-
-        end
-
-      end
-
-      describe 'without -g options' do
-      end
-
-    end
-
+  context '#show' do
+    it 'loads the config.yml file'
   end
 
 end

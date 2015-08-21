@@ -32,15 +32,16 @@ module Eggshell
     end
 
     def create_global_dir_if_needed
-      if File.directory?(Eggshell.home)
+      if !File.directory?(Eggshell.home)
         create_global_dir
       end
     end
 
     def create_global_dir
-      egg_dir = "#{Eggshell.home}"
-      puts "Creating #{egg_dir} directory..."
-      system("mkdir #{egg_dir}")
+      puts "Creating #{Eggshell.home} directory..."
+      system("mkdir #{Eggshell.home}")
+      system("touch #{Eggshell.home}/config.yml && echo 'global: true' >> #{Eggshell.home}/config.yml")
+      Printer.log("Eggshell has been installed!\n\nTo view your configuration, run this command:\n\tegg config show")
     end
 
     def create_local_dir

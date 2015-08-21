@@ -10,6 +10,7 @@ module Eggshell
         $stdout.sync = true if $stdout.isatty
 
         command = argv.shift.strip rescue "help"
+        validate_install(command)
         Eggshell::Config.load!
         Eggshell::Command.load_all!
         Eggshell::Command.run(command, argv)
@@ -19,9 +20,18 @@ module Eggshell
       # rescue Interrupt => e
       #   `stty icanon echo`
       #    error("Command cancelled.", false)
-      # rescue => error
-      #   styled_error(error)
-      #   exit(1)
+      rescue Eggshell::EggException => error
+        puts "ERROR: #{error.message}"
+        #Eggshell.styled_error(error)
+        return
+      rescue => error
+        puts error
+      end
+
+      def validate_install(cmd)
+        if !File.directory?(Eggshell.home) && cmd.downcase != 'init'
+          raise "Error > Please install Eggshell by running \n\tegg init"
+        end
       end
 
     end # end class methods
