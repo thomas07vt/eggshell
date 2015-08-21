@@ -12,7 +12,7 @@ module Eggshell
     ]
 
     def initialize(argv = [])
-      @options = {}
+      @options = Eggshell::Config.config
       @commands = argv
       parse_options(argv)
       set_egg_dir

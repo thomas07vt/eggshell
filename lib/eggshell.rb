@@ -10,9 +10,15 @@ Dir["#{File.dirname(__FILE__)}/eggshell/command/*.rb"].each { |f| require_relati
 module Eggshell
 
   class << self
+
     def home
       "#{ENV["HOME"]}/.egg"
     end
-  end
+
+    def config
+      Eggshell::Config.config.clone
+    end
+
+  end # End class methods
 
 end

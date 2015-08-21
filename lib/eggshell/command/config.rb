@@ -54,10 +54,11 @@ module Eggshell
       def load!
         @@config = YAML.load_file("#{Eggshell.home}/config.yml") || {}
         symbolize_keys(@@config)
+        @@config
       end
 
       def config
-        @@config
+        @@config ||= self.load!
       end
 
       def symbolize_keys(hash)

@@ -18,16 +18,16 @@ describe "INIT" do
 
     describe 'with no arguments' do
 
-      it 'creates an egg folder in the current directory' do
+      it 'creates an egg folder in the global directory' do
         Eggshell::INIT.new
-        expect(Dir["#{Dir.pwd}/egg"]).to_not eq([])
+        expect(Dir["#{Eggshell.home}"]).to_not eq([])
         rm_dir
       end
 
-      describe 'with the invisible (-i) param'do
+      describe 'with the local (-l) param'do
 
         it 'creates a .egg folder in the current directory' do
-          Eggshell::INIT.new(["-i"])
+          Eggshell::INIT.new(["-l"])
           expect(Dir["#{Dir.pwd}/.egg"]).to_not eq([])
           rm_dir(".egg")
         end
